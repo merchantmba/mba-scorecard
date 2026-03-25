@@ -351,6 +351,7 @@
     line-height: 1.65;
     color: var(--text);
     margin: 0 auto 32px;
+    white-space: pre-line;
   }
 
   .results-cta-heading {
@@ -607,18 +608,18 @@
     <span class="tier-badge" id="tierBadge"></span>
     <p class="results-text" id="resultsText"></p>
 
-    <!-- Step 1: Roadmap (next action) -->
+    <!-- Step 1: Strategy call (primary CTA) -->
     <div style="background:var(--white);border-radius:20px;padding:32px;margin:0 auto 32px;text-align:left;box-shadow:0 1px 12px rgba(11,18,32,0.06);">
       <p style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:var(--text-light);margin-bottom:12px;">YOUR NEXT STEP</p>
-      <p style="font-size:20px;font-weight:700;color:var(--night);margin-bottom:12px;line-height:1.3;">Get the MBA Clarity Roadmap</p>
-      <p style="font-size:16px;color:var(--text);line-height:1.6;margin-bottom:20px;">Now that you know where you stand, you need a plan. The Roadmap is a phase-by-phase system that takes you from "considering an MBA" to a credible, defensible application — the same framework we use with our clients.</p>
-      <a href="https://merchantmba.com/the-mba-clarity-roadmap" class="book-btn" target="_blank" style="display:inline-block;">Download the free Roadmap</a>
+      <p style="font-size:20px;font-weight:700;color:var(--night);margin-bottom:12px;line-height:1.3;" id="ctaHeading"></p>
+      <p style="font-size:16px;color:var(--text);line-height:1.6;margin-bottom:20px;white-space:pre-line;" id="ctaBody"></p>
+      <a href="https://meetings.hubspot.com/anish-merchant/meeting-with-anish" class="book-btn" target="_blank" style="display:inline-block;">Book your free strategy call</a>
     </div>
 
-    <!-- Step 2: Strategy call -->
-    <p class="results-cta-heading">Want to go deeper?</p>
-    <p class="results-cta-body">If you'd like to walk through your scorecard with an admissions strategist, we'll identify your biggest opportunities and map out your next steps. No pressure, no pitch.</p>
-    <a href="https://meetings.hubspot.com/anish-merchant/meeting-with-anish" class="book-btn" target="_blank" style="background:var(--charcoal);">Book a free strategy call</a>
+    <!-- Step 2: Roadmap (secondary) -->
+    <p class="results-cta-heading" id="roadmapHeading"></p>
+    <p class="results-cta-body" id="roadmapBody"></p>
+    <a href="https://merchantmba.com/the-mba-clarity-roadmap" class="book-btn" target="_blank" style="background:var(--charcoal);">Download the free Roadmap</a>
     <p class="results-footnote">We also sent your results to your email.</p>
   </div>
 </section>
@@ -677,9 +678,33 @@
   };
 
   var TIER_TEXT = {
-    strong: 'You have the profile to compete at top programs. The question is not whether you can get in \u2014 it\u2019s which schools are the best fit and how to position yourself for scholarships.',
-    average: 'You have a solid foundation, but there are gaps that could cost you an admission \u2014 or a scholarship. The right strategy can close those gaps faster than you think.',
-    needs: 'You\u2019re earlier in the journey, and that\u2019s fine. Most of our strongest success stories started exactly here. What matters now is a clear plan.'
+    strong: 'You\u2019re in a strong position to compete at top programs. But here\u2019s what most strong candidates miss \u2014 getting in isn\u2019t the hard part. The real question is: which schools will give you the best return on your investment, and how do you position yourself for maximum scholarship money?\n\nWe\u2019ve seen candidates with profiles like yours leave $50K+ on the table by applying to the wrong mix of schools or failing to articulate why they belong at that specific program.',
+    average: 'You have a solid foundation, but there are gaps that could cost you an admission \u2014 or a scholarship. The good news? These are exactly the gaps we help close.\n\nMost candidates in this range are strong on paper but unclear on positioning \u2014 they don\u2019t yet know how to articulate why this MBA, why this school, and why now. That clarity is what moves you from \u201caverage applicant\u201d to \u201cfunded admit.\u201d',
+    needs: 'You\u2019re earlier in the journey, and that\u2019s fine. Most of our strongest success stories started exactly here. What matters now isn\u2019t your score \u2014 it\u2019s whether you have a clear plan.\n\nThe candidates who turn this around don\u2019t do it by cramming for the GMAT or padding their resume. They do it by getting clear on what they want, building the right experiences, and applying when their story is ready \u2014 not when the calendar says they should.'
+  };
+
+  var TIER_CTA_HEADING = {
+    strong: 'Let\u2019s make sure you\u2019re maximizing this',
+    average: 'Let\u2019s break down your score together',
+    needs: 'Let\u2019s figure out your timeline and path'
+  };
+
+  var TIER_CTA_BODY = {
+    strong: 'In a free 30-minute strategy call, we\u2019ll review your scorecard, identify which schools are the best fit for your goals, and show you how to position yourself for the strongest scholarship offers.\n\nYou\u2019re already competitive. Let\u2019s make sure you don\u2019t leave money on the table.',
+    average: 'In a free 30-minute call, we\u2019ll walk through your scorecard results, show you which schools fit your profile, and map out exactly what you need to do to strengthen your candidacy \u2014 and maximize your scholarship potential.\n\nNo pitch. Just a clear picture of where you stand and what to do next.',
+    needs: 'In a free 30-minute call, we\u2019ll be honest about where you stand, help you identify what to work on first, and figure out the right timeline for your MBA \u2014 whether that\u2019s this cycle, next year, or a different path entirely.\n\nNo pressure. Just clarity on what makes sense for you right now.'
+  };
+
+  var TIER_ROADMAP_HEADING = {
+    strong: 'Already have a plan in mind?',
+    average: 'Want to get started on your own?',
+    needs: 'Want to start building your plan?'
+  };
+
+  var TIER_ROADMAP_BODY = {
+    strong: 'Download the MBA Clarity Roadmap \u2014 the phase-by-phase system our clients use to go from strategy to acceptance.',
+    average: 'Download the MBA Clarity Roadmap \u2014 a phase-by-phase system for building a credible, defensible application.',
+    needs: 'Download the MBA Clarity Roadmap \u2014 the same framework our clients use to go from uncertainty to a clear, defensible application.'
   };
 
   form.addEventListener('submit', async function(e) {
@@ -745,6 +770,10 @@
     document.getElementById('tierBadge').className = 'tier-badge ' + tier;
     document.getElementById('tierBadge').textContent = TIER_LABELS[tier];
     document.getElementById('resultsText').textContent = TIER_TEXT[tier];
+    document.getElementById('ctaHeading').textContent = TIER_CTA_HEADING[tier];
+    document.getElementById('ctaBody').textContent = TIER_CTA_BODY[tier];
+    document.getElementById('roadmapHeading').textContent = TIER_ROADMAP_HEADING[tier];
+    document.getElementById('roadmapBody').textContent = TIER_ROADMAP_BODY[tier];
 
     resultsSection.classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
